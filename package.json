@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "pug": "^2.0.4",
+    "sass": "^1.23.0",
+    "stylus": "^0.54.7"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}

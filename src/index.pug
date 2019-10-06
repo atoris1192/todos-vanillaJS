@@ -1,0 +1,142 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    title TO DO APP | KDE
+    meta(name="description" content="TO DO アプリです")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="format-detection" content="telephone=no")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous")
+    link(rel="stylesheet" href="./style.scss")
+    script(src="./index.js" defer="")
+  body.bg-light
+    #l-wrapper
+      .container-fluid
+        header.header
+          h1.headerTitle TO DO APP
+        // /.header
+        .row.mainContainer
+          .col-md-8.col-xl-9.taskContainer
+            #stage
+            .taskFormContainer.bg-dark
+              form#js-taskForm(name="taskForm")
+                .container-fluid.py-3
+                  .row
+                    .col-xl-5.mb-2.mb-xl-0
+                      .mb-1.small.text-white
+                        | 内容
+                        span.badge.badge-danger.ml-2 ※必須
+                      div
+                        input.form-control(type="text" name="content" required="" placeholder="タスクを入力してください")
+                    .col-xl.row
+                      .col-sm-auto.col-md-auto.col-xl
+                        .mb-1.small.text-white
+                          | 優先度
+                          span.badge.badge-danger.ml-2 ※必須
+                        .text-white
+                          label.custom-control.custom-radio
+                            input.custom-control-input(type="radio" name="priority" value="3" required="")
+                            span.custom-control-indicator
+                            span.custom-control-description 高
+                          label.custom-control.custom-radio
+                            input.custom-control-input(type="radio" name="priority" value="2" checked="")
+                            span.custom-control-indicator
+                            span.custom-control-description 中
+                          label.custom-control.custom-radio
+                            input.custom-control-input(type="radio" name="priority" value="1")
+                            span.custom-control-indicator
+                            span.custom-control-description 低
+                      .col-auto.col-sm-auto.col-xl.mb-3.mb-sm-0
+                        .mb-1.small.text-white 期限
+                        input.form-control(type="date" name="limit")
+                      .col-sm-auto.col-lg.col-xl.align-self-center
+                        input.btn.btn-primary.mb-1(type="submit" value="追加")
+                        input.btn.btn-secondary.mb-1(type="reset" value="クリア")
+                // /.container
+              // /.taskForm
+          .col-md-4.col-xl-3
+            .sticky-top
+              #js-statusBox.statusBox.mb-4.mb-md-5
+                table.table.table-bordered
+                  tr
+                    th 現在のタスク総数
+                    td
+                      span.totalCount 0
+                      |  個
+                  tr
+                    th 残タスク数
+                    td
+                      span.leftCount 0
+                      |  個
+                  tr
+                    th 完了済みタスク数
+                    td
+                      span.completeCount 0
+                      |  個
+                      #js-taskDeleteBtn.taskDeleteBtn.js-none
+                        a.small(href="#") 完了済みタスクを削除
+                  tr
+                    th 完遂率
+                    td
+                      span.completionRate 0
+                      |  ％
+              // /.statusBox
+              .sortArea.mb-3
+                h2.h6.font-weight-bold タスクの並び替え
+                #js-sort.btn-group.w-100.sortBtns
+                  button.btn.btn-outline-secondary.w-50.js-sort-priority 優先度順
+                  button.btn.btn-outline-secondary.w-50.js-sort-limit 期限順
+              // /.sortArea
+              .mb-4.mb-md-5
+                button#js-removeAllItem.btn.btn-outline-danger.w-100 全タスク削除
+              div
+                h2.h6.font-weight-bold.mb-3 本サイトについて
+                h3.h6 閲覧推奨環境
+                .small
+                  dl.row
+                    dt.col-2 PC:
+                    dd.col-10 Chrome, Edge最新版
+                    dt.col-2 SP:
+                    dd.col-10 iOS11.0.3以上 iOS Safari, Chrome最新版
+                  p
+                    a(href="https://github.com/kde-space/TO_DO_APP" target="_blank") その他使い方などはこちら
+        // /.mainContainer
+        #js-modal.modal
+          .modal-dialog.modal-lg(role="document")
+            .modal-content
+              .modal-header
+                h5.modal-title 編集
+                button.close.js-modal-close(type="button" data-dismiss="modal" aria-label="Close")
+                  span(aria-hidden="true") ×
+              form#js-taskEdit(name="taskEditForm")
+                .modal-body
+                  ul.list-unstyled
+                    li
+                      | 内容 
+                      input.form-control(type="text" name="content" required="")
+                    li
+                      | 優先度
+                      div
+                        label.custom-control.custom-radio
+                          input.custom-control-input(type="radio" name="priority" value="3" required="")
+                          span.custom-control-indicator
+                          span.custom-control-description 高
+                        label.custom-control.custom-radio
+                          input.custom-control-input(type="radio" name="priority" value="2" checked="")
+                          span.custom-control-indicator
+                          span.custom-control-description 中
+                        label.custom-control.custom-radio
+                          input.custom-control-input(type="radio" name="priority" value="1")
+                          span.custom-control-indicator
+                          span.custom-control-description 低
+                    li
+                      | 期限 
+                      input.form-control(type="date" name="limit")
+                .modal-footer
+                  input.btn.btn-primary(type="submit" value="完了")
+                  input.btn.btn-secondary(type="reset" value="クリア")
+              // /.taskForm
+          .modal-bg
+      // /.container-fluid
+    // /#l-wrapper
